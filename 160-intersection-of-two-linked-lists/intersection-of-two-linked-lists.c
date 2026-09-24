@@ -41,6 +41,7 @@ struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *he
     listA = headA;
     listB = headB;
 
+    //Account for possible offsets in the lists
     if (aCount >= bCount) {
         aCount -= bCount;
         for (int i = 0; i < aCount; i++) {
@@ -53,6 +54,7 @@ struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *he
         }
     }
 
+    //Now that offsets are accounted for, loop again and look for intersection
     while (listA != NULL && listB != NULL) {
         if (listA == listB) {
             return listA;
