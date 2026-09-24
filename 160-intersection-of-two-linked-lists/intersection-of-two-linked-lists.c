@@ -10,8 +10,6 @@ struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *he
     struct ListNode* listA = headA;
     struct ListNode* listB = headB;
     struct ListNode* intersect = NULL;
-    int skipA = 0;
-    int skipB = 0;
     int aCount = 0;
     int bCount = 0;
     int countDiff;
@@ -26,18 +24,12 @@ struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *he
         if (listA != NULL) {
             listA = listA->next;
             aCount++;
-            skipA ++;
         }
         if (listB != NULL) {
             listB = listB->next;
             bCount ++;
-            skipB ++;
         }
     }
-
-    //reset variables
-    skipA = 0;
-    skipB = 0;
     listA = headA;
     listB = headB;
 
@@ -59,8 +51,6 @@ struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *he
         if (listA == listB) {
             return listA;
         } else {
-            skipA ++;
-            skipB++;
             listA = listA->next;
             listB = listB->next;
         }
