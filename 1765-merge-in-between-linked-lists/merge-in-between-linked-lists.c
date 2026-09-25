@@ -1,36 +1,23 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     struct ListNode *next;
- * };
- */
-
-
 struct ListNode* mergeInBetween(struct ListNode* list1, int a, int b, struct ListNode* list2){
-    int count = 0;
-    if (list1 == NULL || list2 == NULL) {
-        return NULL;
+    struct ListNode* temp=list1;
+    struct ListNode* temp1=list2;
+    int c=0;
+    while(temp1->next!=NULL){
+        temp1=temp1->next;
     }
-    struct ListNode* ptr = list1;
-    struct ListNode* start = list1;
-    struct ListNode* end = list1;
+    while(temp->next!=NULL){
+        struct ListNode* temp3=temp;
+        temp=temp->next;
+        if (c==a-1){
+            temp3->next=list2;
+        }
+        if (c==b){
+            temp1->next=temp;
+            break;
+        }
+        c++;
+        
 
-    while (ptr != NULL) {
-        count++;
-       if (count == a){
-        start = ptr;
-       } 
-       ptr = ptr->next;
-       if (count == b+1) {
-        end = ptr;
-       }
     }
-    ptr = list2;
-    start->next = list2;
-    while (ptr->next != NULL) {
-        ptr = ptr->next;
-    }
-    ptr->next = end;
     return list1;
 }
